@@ -1,19 +1,20 @@
+<!-- it will shows the header about section -->
 <h2>About</h2>
 
 <div>
+  <!-- it will show the variable about behind the scenes -->
   <p>{{about}}</p>
-
+<!-- this for loop which it will goes through each letter in wishlist -->
   {% for letter in 'wishlist' %}
-
-  <p>{{letter}}</p>
-
+    <p>{{letter}}</p>
+<!-- this will end the loop -->
   {% endfor %}
 
-
+<!-- it will shows who made this websites -->
   <p>A website by {{author}}</p>
-
+<!-- it wil check if the author has a variable value -->
   {% if author %}
-
+<!-- if the author exsit it will show the name -->
   <p>The author's name has been provided</p>
 
   {% else  %}

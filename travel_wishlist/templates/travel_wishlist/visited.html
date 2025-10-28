@@ -1,17 +1,23 @@
-<h2>Places you have visited</h2>
+<!-- it will use main layout from base.html -->
+{% extends 'travel_wishlist/base.html' %}
+{% block content %}
 
+<h2>Places you have visited</h2>
+<!-- it will check if the user has visited any places  -->
 {% if visited %}
 
 <ul>
+  <!-- it will show each visited in a list -->
   {% for place in visited %}
         <li>{{place.name}}</li>
   {%  endfor %}
 </ul>
 
 {% else %}
-
+<!-- if the user has not visited any places then it will show a message -->
   <p>You have not visited any places yet</p>
 
 {% endif %}
 
-<a href="{% url 'place_list' %}" >Your wishlist</a>
+{% endblock %}
+

@@ -1,21 +1,26 @@
-<h2>Travel Wishlist</h2>
+<!-- it is layout from base.html -->
+{% extends 'travel_wishlist/base.html' %}
+<!-- it will start the page -->
+{% block content %}
 
+<h2>Travel Wishlist</h2>
+<!-- the form will add a new place -->
 <form method="POST" action="{% url 'place_list' %}">
   {% csrf_token %}
   {{new_place_form}}
-  <button type="submit">Add</button>
+  <button id="add-new-place" type="submit">Add</button>
 </form>
 
-
+<!-- it will show the places in the wishlist -->
 {% for place in places %}
 
-<div>
-  {{place.name}}
+<div class="wishlist-place">
+    <span id="place-name-{{ place.pk }}" class="place-name">{{place.name}}</span>
 
-  <form method="POST" action="{% url 'place_was_visited' place.pk %}">
-    {% csrf_token %}
-    <button>Visited!</button>
-  </form>
+    <form class="visited-form" method="POST" action="{% url 'place_was_visited' place.pk %}">
+       {% csrf_token %}
+       <button id="visited-button-{{ place.pk }}">Visited!</button>
+    </form>
 
 
 </div>
@@ -25,5 +30,5 @@
 <p>You have no places in your wishlist</p>
 
 {% endfor %}
-
-<a href="{% url 'places_visited' %}" >Places you have visited</a>
+ 
+{% endblock %}
