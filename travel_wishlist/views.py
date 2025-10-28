@@ -9,7 +9,7 @@ def place_list (request):
     # Create a new place from the form
     # creating a form here
     form = NewPlaceForm(request.POST)
-    #creating a model object from form
+    #creating a model object from form.
     place = form.save()
     # validation against DB constraints
     if form.is_valid():

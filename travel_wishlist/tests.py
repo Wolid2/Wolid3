@@ -46,7 +46,7 @@ class TestVisitedPages(TestCase):
 
   
 class VisitedList(TestCase):
-# use test data from fixture file
+# use test data from fixture file.
   fixtures = ['test_places']
 
   def test_visited_list_shows_visited_places(self):
