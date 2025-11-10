@@ -23,12 +23,12 @@ class TestViewHomePageIsEmptyList(TestCase):
     def test_load_wishlist_page_shows_empty_list(self):
         response = self.client.get(reverse('place_list'))
         self.assertTemplateUsed(response, 'travel_wishlist/wishlist.html')
-        self.assertEquals(0, len(response.context['places']))
+        self.assertEqual(0, len(response.context['places']))
 
     def test_load_visted_page_shows_empty_list(self):
         response = self.client.get(reverse('places_visited'))
         self.assertTemplateUsed(response, 'travel_wishlist/visited.html')
-        self.assertEquals(0, len(response.context['visited']))
+        self.assertEqual(0, len(response.context['visited']))
 
 
 class TestWishList(TestCase):
@@ -210,7 +210,7 @@ class TestPlaceDetail(TestCase):
 
         response = self.client.get(reverse('place_details', kwargs={'place_pk':1} ))
         # Check correct template was used
-        self.assertTemplateUsed(response, 'travel_wishlist/place_detail.html')
+        self.assertTemplateUsed(response, 'travel_wishlist/place_details.html')
 
         # What data was sent to the template?
         data_rendered = response.context['place']
@@ -238,7 +238,7 @@ class TestPlaceDetail(TestCase):
 
         self.assertEqual(response.context['place'], updated_place_1)
         # Check correct template was used
-        self.assertTemplateUsed(response, 'travel_wishlist/place_detail.html')
+        self.assertTemplateUsed(response, 'travel_wishlist/place_details.html')
 
         # and correct data shown on page?
         self.assertNotContains(response, 'cool')  # old text is gone 
@@ -257,7 +257,7 @@ class TestPlaceDetail(TestCase):
         # Correct object used in response?
         self.assertEqual(response.context['place'], updated_place_4)
         # Check correct template was used
-        self.assertTemplateUsed(response, 'travel_wishlist/place_detail.html')
+        self.assertTemplateUsed(response, 'travel_wishlist/place_details.html')
 
         # and correct data shown on page?
         self.assertContains(response, 'yay')  # new text shown
@@ -278,7 +278,7 @@ class TestPlaceDetail(TestCase):
         self.assertEqual(response.context['place'], updated_place_4)
 
         # Check correct template was used
-        self.assertTemplateUsed(response, 'travel_wishlist/place_detail.html')
+        self.assertTemplateUsed(response, 'travel_wishlist/place_details.html')
 
         # and correct data shown on page?
         self.assertContains(response, date_visited)  # new text shown

@@ -28,11 +28,13 @@ def place_list (request):
 
 
 
-
+# getting a request to show the list of places
   places = Place.objects.filter(user=request.user).filter(visited=False).order_by('name')
   new_place_form = NewPlaceForm()
   return render (request, 'travel_wishlist/wishlist.html', {'places': places, 'new_place_form': new_place_form})
 
+
+# shows a list of visited places
 @login_required
 def places_visited(request):
   visited = Place.objects.filter(visited=True)
@@ -41,8 +43,9 @@ def places_visited(request):
 @login_required
 def place_was_visited(request, place_pk):
   if request.method=='POST':
-    # place = Place.objects.get(pk=place_pk)
+    #  place = Place.objects.get(pk=place_pk)
     place = get_object_or_404(Place , pk=place_pk)
+    #  it only allows the owner of the place to updates it
     if place.user == request.user:
       place.visited = True
       place.save()
@@ -62,7 +65,9 @@ def about(request):
 
 
 @login_required
+#  it shows the place details page
 def place_details(request, place_pk):
+  #  it get the place objects by ID or it will return 404 error
   place = get_object_or_404(Place, pk=place_pk)
   # return render (request, 'travel_wishlist/place_details.html', {'place': place})
   if place.user != request.user:
@@ -83,7 +88,7 @@ def place_details(request, place_pk):
       messages.error (request, form.errors)  
 
     return redirect ('place_details', place_pk=place.pk)
-
+# if it is get a request, it will show the page
   else:
     if place.visited:
        review_form = TripReviewForm(instance=place)
@@ -92,8 +97,10 @@ def place_details(request, place_pk):
        return render (request, 'travel_wishlist/place_details.html', {'place': place})
 
 @login_required
+# it wil delete a place
 def delete_place(request, place_pk):
   place = get_object_or_404(Place, pk=place_pk)
+  # only the owner of the place can delete it
   if place.user == request.user:
     place.delete()
     return redirect ('place_list')

@@ -17,10 +17,10 @@ class TitleTest(LiveServerTestCase):
         self.browser.implicitly_wait(3)
 
         self.browser.get(self.live_server_url + '/admin')   # expect to be redirected to login page 
-        self.browser.find_element_by_id('id_username').send_keys('alice')
-        self.browser.find_element_by_id('id_password').send_keys('qwertyuiop')
-        self.browser.find_element_by_css_selector('input[type="submit"]').click()
-    
+        self.browser.find_element(By.ID, 'id_username').send_keys('alice')
+        self.browser.find_element(By.ID, 'id_password').send_keys('qwertyuiop')
+        self.browser.find_element(By.CSS_SELECTOR, 'input[type="submit"]').click()
+
 
     def tearDown(self):
         self.browser.quit()
@@ -39,13 +39,12 @@ class AddEditPlacesTests(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()  
         self.browser.implicitly_wait(3)
-       
         self.browser.get(self.live_server_url + '/admin')   # expect to be redirected to login page 
-        self.browser.find_element_by_id('id_username').send_keys('alice')
-        self.browser.find_element_by_id('id_password').send_keys('qwertyuiop')
-        self.browser.find_element_by_css_selector('input[type="submit"]').click()
-    
-        
+        self.browser.find_element(By.ID, 'id_username').send_keys('alice')
+        self.browser.find_element(By.ID, 'id_password').send_keys('qwertyuiop')
+        self.browser.find_element(By.CSS_SELECTOR, 'input[type="submit"]').click()
+
+
     def tearDown(self):
         self.browser.quit()
 
@@ -119,10 +118,10 @@ class PageContentTests(LiveServerTestCase):
         self.browser.implicitly_wait(3)
         
         self.browser.get(self.live_server_url + '/admin')   # expect to be redirected to login page 
-        self.browser.find_element_by_id('id_username').send_keys('alice')
-        self.browser.find_element_by_id('id_password').send_keys('qwertyuiop')
-        self.browser.find_element_by_css_selector('input[type="submit"]').click()
-    
+        self.browser.find_element(By.ID, 'id_username').send_keys('alice')
+        self.browser.find_element(By.ID, 'id_password').send_keys('qwertyuiop')
+        self.browser.find_element(By.CSS_SELECTOR, 'input[type="submit"]').click()
+
 
     def tearDown(self):
         self.browser.quit()
